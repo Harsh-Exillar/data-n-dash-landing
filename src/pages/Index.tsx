@@ -156,14 +156,28 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Our Team</h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
             {[
-              { name: "Pranav Nair", role: "Founder" },
-              { name: "Umair Mansuri", role: "Co-Founder" },
+              {
+                name: "Pranav Nair",
+                role: "Founder",
+                image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952",
+              },
+              {
+                name: "Umair Mansuri",
+                role: "Co-Founder",
+                image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+              },
             ].map((member) => (
               <div
                 key={member.name}
                 className="bg-white/5 backdrop-blur-lg p-6 rounded-lg border border-white/10 hover:border-accent transition-all duration-300 group"
               >
-                <Users className="w-8 h-8 text-accent mb-4" />
+                <div className="mb-4">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-32 h-32 rounded-full mx-auto object-cover border-2 border-accent"
+                  />
+                </div>
                 <h3 className="text-xl font-semibold">{member.name}</h3>
                 <p className="text-gray-300">{member.role}</p>
               </div>
