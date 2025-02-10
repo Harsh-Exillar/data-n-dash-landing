@@ -1,10 +1,16 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import TypeWriter from "../components/TypeWriter";
-import { CalendarDays, Mail, Users } from "lucide-react";
+import { CalendarDays, Mail, Users, Github, Linkedin, ExternalLink } from "lucide-react";
 
 const Index = () => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-primary text-white relative overflow-hidden">
       {/* Grid Background */}
@@ -16,29 +22,29 @@ const Index = () => {
       />
 
       {/* Navigation */}
-      <nav className="relative z-10 bg-primary/30 backdrop-blur-lg border-b border-white/10">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/30 backdrop-blur-lg border-b border-white/10">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="text-xl font-bold">Data n Dash</div>
             <div className="hidden md:flex space-x-8">
-              <Link
-                to="#about"
+              <button
+                onClick={() => scrollToSection("objectives")}
                 className="hover:text-accent transition-colors duration-300"
               >
                 About
-              </Link>
-              <Link
-                to="#events"
+              </button>
+              <button
+                onClick={() => scrollToSection("events")}
                 className="hover:text-accent transition-colors duration-300"
               >
                 Events
-              </Link>
-              <Link
-                to="#team"
+              </button>
+              <button
+                onClick={() => scrollToSection("team")}
                 className="hover:text-accent transition-colors duration-300"
               >
                 Team
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -64,7 +70,7 @@ const Index = () => {
       </section>
 
       {/* Objectives Section */}
-      <section className="relative z-10 bg-white/5 backdrop-blur-lg py-20">
+      <section id="objectives" className="relative z-10 bg-white/5 backdrop-blur-lg py-20 scroll-mt-20">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-12">Our Focus Areas</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -100,10 +106,7 @@ const Index = () => {
       </section>
 
       {/* Current Events */}
-      <section
-        id="events"
-        className="relative z-10 py-20"
-      >
+      <section id="events" className="relative z-10 py-20 scroll-mt-20">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-12">Current Events</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -151,7 +154,7 @@ const Index = () => {
       </section>
 
       {/* Team Section */}
-      <section id="team" className="relative z-10 py-20">
+      <section id="team" className="relative z-10 py-20 scroll-mt-20">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-12">Our Team</h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
@@ -226,6 +229,95 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="relative z-10 bg-primary/90 border-t border-white/10">
+        <div className="container mx-auto px-6 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {/* About Column */}
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold">Data n Dash</h3>
+              <p className="text-gray-300">
+                Empowering data professionals through community, learning, and
+                innovation.
+              </p>
+              <div className="flex space-x-4">
+                <a
+                  href="https://www.linkedin.com/company/data-n-dash/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-accent transition-colors"
+                >
+                  <Linkedin className="w-6 h-6" />
+                </a>
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-accent transition-colors"
+                >
+                  <Github className="w-6 h-6" />
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold">Quick Links</h3>
+              <ul className="space-y-2">
+                <li>
+                  <button
+                    onClick={() => scrollToSection("objectives")}
+                    className="text-gray-300 hover:text-accent transition-colors"
+                  >
+                    About Us
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection("events")}
+                    className="text-gray-300 hover:text-accent transition-colors"
+                  >
+                    Events
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection("team")}
+                    className="text-gray-300 hover:text-accent transition-colors"
+                  >
+                    Our Team
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold">Contact</h3>
+              <div className="flex items-center space-x-2 text-gray-300">
+                <Mail className="w-5 h-5" />
+                <span>info@datandash.com</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <a
+                  href="https://exillar.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-accent transition-colors flex items-center space-x-1"
+                >
+                  <span>Supported by Exillar</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 pt-8 border-t border-white/10 text-center text-gray-400">
+            <p>© {new Date().getFullYear()} Data n Dash. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
