@@ -52,16 +52,57 @@ const Index = () => {
           meetups and events focused on data analysis, engineering, and more.
         </p>
         <div className="mt-12 flex justify-center">
-          <button className="bg-accent hover:bg-accent/80 text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+          <a
+            href="https://www.linkedin.com/company/data-n-dash/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-accent hover:bg-accent/80 text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+          >
             Join Community
-          </button>
+          </a>
+        </div>
+      </section>
+
+      {/* Objectives Section */}
+      <section className="relative z-10 bg-white/5 backdrop-blur-lg py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center mb-12">Our Focus Areas</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Data Engineering Excellence",
+                description:
+                  "Deep dive into data pipeline architecture and best practices",
+              },
+              {
+                title: "Business Intelligence",
+                description:
+                  "Transform raw data into actionable business insights",
+              },
+              {
+                title: "Data Science Innovation",
+                description:
+                  "Explore machine learning and advanced analytics techniques",
+              },
+            ].map((focus, index) => (
+              <div
+                key={index}
+                className="bg-primary/50 backdrop-blur-lg p-6 rounded-lg border border-white/10 hover:border-accent transition-all duration-300 group hover:transform hover:scale-105"
+              >
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-accent">
+                  {focus.title}
+                </h3>
+                <p className="text-gray-300">{focus.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Current Events */}
       <section
         id="events"
-        className="relative z-10 bg-white/5 backdrop-blur-lg py-20"
+        className="relative z-10 py-20"
       >
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-12">Current Events</h2>
@@ -77,6 +118,31 @@ const Index = () => {
                 </h3>
                 <p className="text-gray-300">
                   Join us for an evening of learning and networking.
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Past Events */}
+      <section className="relative z-10 bg-white/5 backdrop-blur-lg py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center mb-12">Past Events</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              "Data Science Workshop",
+              "BI Tools Comparison",
+              "ETL Pipeline Design",
+            ].map((event, index) => (
+              <div
+                key={index}
+                className="bg-primary/50 backdrop-blur-lg p-6 rounded-lg border border-white/10 hover:border-accent transition-all duration-300 group"
+              >
+                <CalendarDays className="w-8 h-8 text-accent mb-4" />
+                <h3 className="text-xl font-semibold mb-2">{event}</h3>
+                <p className="text-gray-300">
+                  A successful event that brought together data enthusiasts.
                 </p>
               </div>
             ))}
