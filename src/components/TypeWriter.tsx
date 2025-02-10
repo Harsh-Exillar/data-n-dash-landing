@@ -10,6 +10,7 @@ const phrases = [
 
 const TypeWriter = () => {
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -23,13 +24,15 @@ const TypeWriter = () => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="text-3xl md:text-5xl font-bold text-white mb-2">
-        Data n{" "}
-        <span className="inline-block w-[300px] overflow-hidden border-r-4 border-accent animate-typing">
-          {phrases[currentPhraseIndex]}
+      <h1 className="text-4xl md:text-6xl font-bold text-white flex flex-wrap justify-center items-baseline gap-x-4">
+        <span>Data n</span>
+        <span className="relative">
+          <span className="inline-block overflow-hidden">
+            {phrases[currentPhraseIndex]}
+          </span>
+          <span className="absolute bottom-0 left-0 w-full h-1 bg-accent transform origin-left transition-transform duration-300"></span>
         </span>
-      </div>
-      <div className="h-0.5 w-32 bg-accent mt-2 animate-fade-in"></div>
+      </h1>
     </div>
   );
 };
