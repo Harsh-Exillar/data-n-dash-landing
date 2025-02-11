@@ -3,7 +3,7 @@ const SPREADSHEET_ID = '1BJlr4mYeg0IrDnwJsI7V5Y3MtyYcCkmaSFlguFfU5Q4';
 const SHEET_ID = 'Sheet1'; // Assuming first sheet
 
 // You'll need to replace this with your valid API key
-const API_KEY = ''; // Remove invalid key for now
+const API_KEY = 'AIzaSyBg7S1b8me1-8PjOVhc0v34bdAp0EK6jhE'; // Remove invalid key for now
 
 interface Event {
   title: string;

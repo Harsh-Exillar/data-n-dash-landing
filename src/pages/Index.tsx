@@ -3,13 +3,11 @@ import { Link } from "react-router-dom";
 import TypeWriter from "../components/TypeWriter";
 import { CalendarDays, Mail, Users, Github, Linkedin, ExternalLink, MapPin, X } from "lucide-react";
 import { fetchEvents } from "../utils/sheets";
-import { removeBackground, loadImage } from "../utils/imageUtils";
 
 const Index = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentEvents, setCurrentEvents] = useState<any[]>([]);
-  const [processedLogoUrl, setProcessedLogoUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -26,26 +24,6 @@ const Index = () => {
       setCurrentEvents(events);
     };
     loadEvents();
-  }, []);
-
-  useEffect(() => {
-    const processLogo = async () => {
-      try {
-        const response = await fetch("https://iili.io/2mHIhYl.png");
-        const blob = await response.blob();
-        
-        const img = await loadImage(blob);
-        
-        const processedBlob = await removeBackground(img);
-        
-        const processedUrl = URL.createObjectURL(processedBlob);
-        setProcessedLogoUrl(processedUrl);
-      } catch (error) {
-        console.error("Error processing logo:", error);
-      }
-    };
-
-    processLogo();
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -78,14 +56,16 @@ const Index = () => {
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/30 backdrop-blur-lg border-b border-white/10">
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-2">
               <img
-                src={processedLogoUrl || "https://iili.io/2mHIhYl.png"}
+                src="https://i.ibb.co/RkkXLHkV/DND-150x150.png"
                 alt="Data n Dash"
-                className="w-auto h-16 object-contain transition-transform hover:scale-105"
+                
+                className="w-16 h-12 object-contain"
               />
+              <span className="text-xl font-bold">Data n Dash</span>
             </Link>
             <div className="hidden md:flex space-x-8">
               <button
@@ -107,6 +87,7 @@ const Index = () => {
                 Team
               </button>
             </div>
+            {/* Mobile menu button */}
             <button 
               className="md:hidden p-2"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -121,6 +102,7 @@ const Index = () => {
             </button>
           </div>
 
+          {/* Mobile menu */}
           {isMobileMenuOpen && (
             <div className="md:hidden absolute top-full left-0 right-0 bg-primary/95 backdrop-blur-lg border-b border-white/10 py-4">
               <div className="flex flex-col space-y-4 px-4">
@@ -148,6 +130,7 @@ const Index = () => {
         </div>
       </nav>
 
+      {/* Hero Section */}
       <section className="relative z-10 container mx-auto px-4 pt-32 pb-16">
         <TypeWriter />
         <p className="mt-8 text-center max-w-2xl mx-auto text-lg text-gray-300">
@@ -166,6 +149,7 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Objectives Section */}
       <section id="objectives" className="relative z-10 bg-white/5 backdrop-blur-lg py-20 scroll-mt-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Our Focus Areas</h2>
@@ -201,6 +185,7 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Current Events */}
       <section id="events" className="relative z-10 py-20 scroll-mt-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Current Events</h2>
@@ -227,6 +212,7 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Past Events */}
       <section className="relative z-10 bg-white/5 backdrop-blur-lg py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Past Events</h2>
@@ -251,6 +237,7 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Team Section with updated images */}
       <section id="team" className="relative z-10 py-20 scroll-mt-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Our Team</h2>
@@ -291,6 +278,7 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Partners Section with updated logo */}
       <section className="relative z-10 bg-white/5 backdrop-blur-lg py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Our Partners</h2>
@@ -311,6 +299,7 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Newsletter Section with increased width */}
       <section className="relative z-10 py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -330,9 +319,11 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="relative z-10 bg-primary/90 border-t border-white/10">
         <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {/* About Column */}
             <div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <img
@@ -370,6 +361,7 @@ const Index = () => {
               </div>
             </div>
 
+            {/* Quick Links */}
             <div className="space-y-4">
               <h3 className="text-xl font-bold">Quick Links</h3>
               <ul className="space-y-2">
@@ -400,6 +392,7 @@ const Index = () => {
               </ul>
             </div>
 
+            {/* Contact */}
             <div className="space-y-4">
               <h3 className="text-xl font-bold">Contact</h3>
               <div className="flex items-center space-x-2 text-gray-300">
