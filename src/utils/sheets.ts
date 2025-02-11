@@ -1,7 +1,9 @@
 
 const SPREADSHEET_ID = '1BJlr4mYeg0IrDnwJsI7V5Y3MtyYcCkmaSFlguFfU5Q4';
 const SHEET_ID = 'Sheet1'; // Assuming first sheet
-const API_KEY = 'AIzaSyBv_3O8qDmzXD6Zj3iOGXTGFZPxqaKqPX8'; // This is a public API key for reading only
+
+// You'll need to replace this with your valid API key
+const API_KEY = ''; // Remove invalid key for now
 
 interface Event {
   title: string;
@@ -11,6 +13,30 @@ interface Event {
 }
 
 export const fetchEvents = async (): Promise<Event[]> => {
+  if (!API_KEY) {
+    console.error('Google Sheets API key is not configured');
+    return [
+      {
+        title: 'Sample Event 1',
+        description: 'Configure Google Sheets API to see live events',
+        venue: 'TBD',
+        date: 'TBD',
+      },
+      {
+        title: 'Sample Event 2',
+        description: 'Configure Google Sheets API to see live events',
+        venue: 'TBD',
+        date: 'TBD',
+      },
+      {
+        title: 'Sample Event 3',
+        description: 'Configure Google Sheets API to see live events',
+        venue: 'TBD',
+        date: 'TBD',
+      }
+    ];
+  }
+
   try {
     const response = await fetch(
       `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_ID}?key=${API_KEY}`
