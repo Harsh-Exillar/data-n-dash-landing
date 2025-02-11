@@ -226,11 +226,16 @@ const Index = () => {
       <section id="team" className="relative z-10 py-20 scroll-mt-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Our Team</h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-2xl mx-auto">
             {[
               {
                 name: "Rajveer Singh",
                 role: "Organizer",
+                image: "https://media.licdn.com/dms/image/v2/D5603AQEmug7AJ1lItw/profile-displayphoto-shrink_200_200/B56ZSDSBd2H0Ac-/0/1737369327997?e=2147483647&v=beta&t=eIaLPpNlVse277jjWUghzNf9vxduxbZR5znaPPfNEX0",
+              },
+              {
+                name: "Janvi Gupta",
+                role: " Organizer",
                 image: "https://media.licdn.com/dms/image/v2/D5603AQEmug7AJ1lItw/profile-displayphoto-shrink_200_200/B56ZSDSBd2H0Ac-/0/1737369327997?e=2147483647&v=beta&t=eIaLPpNlVse277jjWUghzNf9vxduxbZR5znaPPfNEX0",
               },
               {
@@ -270,8 +275,8 @@ const Index = () => {
               className="hover:opacity-80 transition-opacity duration-300"
             >
               <img
-                src="https://aavatto.com/wp-content/uploads/2024/04/Feature-Image-Shree-Swaminarayan-Donations-1.png"
-                alt="Exillar"
+                src="https://exillar.com/wp-content/uploads/2023/07/logo.svg"
+                alt="Exillar infotech"
                 className="h-12 object-contain"
               />
             </a>
