@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TypeWriter from "../components/TypeWriter";
 import LoadingScreen from "../components/LoadingScreen";
-import { CalendarDays, Mail, Users, Github, Linkedin, ExternalLink, MapPin } from "lucide-react";
+import { CalendarDays, Mail, Users, Github, Linkedin, ExternalLink, MapPin, X } from "lucide-react";
 
 const Index = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -22,11 +22,8 @@ const Index = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+    setIsMobileMenuOpen(false);
   };
-
-  if (isLoading) {
-    return <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />;
-  }
 
   return (
     <div className="min-h-screen bg-primary text-white relative overflow-hidden">
@@ -52,14 +49,14 @@ const Index = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/30 backdrop-blur-lg border-b border-white/10">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2">
               <img
                 src="https://media.licdn.com/dms/image/v2/D4D0BAQFSxdzdS2j4Gw/company-logo_100_100/B4DZTzlriQHYAQ-/0/1739253529200/data_n_dash_logo?e=1747267200&v=beta&t=WWOtrHesO5xpFNAVyFwRS5DbqlHHH9vi0nYN0-1_zKQ"
                 alt="Data n Dash"
                 className="w-8 h-8 object-contain"
               />
               <span className="text-xl font-bold">Data n Dash</span>
-            </div>
+            </Link>
             <div className="hidden md:flex space-x-8">
               <button
                 onClick={() => scrollToSection("objectives")}
@@ -81,12 +78,45 @@ const Index = () => {
               </button>
             </div>
             {/* Mobile menu button */}
-            <button className="md:hidden p-2">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+            <button 
+              className="md:hidden p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
             </button>
           </div>
+
+          {/* Mobile menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden absolute top-full left-0 right-0 bg-primary/95 backdrop-blur-lg border-b border-white/10 py-4">
+              <div className="flex flex-col space-y-4 px-4">
+                <button
+                  onClick={() => scrollToSection("objectives")}
+                  className="hover:text-accent transition-colors duration-300"
+                >
+                  About
+                </button>
+                <button
+                  onClick={() => scrollToSection("events")}
+                  className="hover:text-accent transition-colors duration-300"
+                >
+                  Events
+                </button>
+                <button
+                  onClick={() => scrollToSection("team")}
+                  className="hover:text-accent transition-colors duration-300"
+                >
+                  Team
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
@@ -200,14 +230,14 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
             {[
               {
-                name: "Pranav Nair",
-                role: "Founder",
-                image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7",
+                name: "Rajveer Singh",
+                role: "Organizer",
+                image: "https://media.licdn.com/dms/image/v2/D5603AQEmug7AJ1lItw/profile-displayphoto-shrink_200_200/B56ZSDSBd2H0Ac-/0/1737369327997?e=2147483647&v=beta&t=eIaLPpNlVse277jjWUghzNf9vxduxbZR5znaPPfNEX0",
               },
               {
-                name: "Umair Mansuri",
-                role: "Co-Founder",
-                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
+                name: "Harsh Mer",
+                role: "Co-Organizer",
+                image: "https://media.licdn.com/dms/image/v2/D5603AQEHgKyxw5RD7Q/profile-displayphoto-shrink_400_400/B56ZTRplr5GsAg-/0/1738684129129?e=1744848000&v=beta&t=o3F3c_N9A4eBES-XHf0r3z5GF7ZeOrsjenPFVnn2Vjs",
               },
             ].map((member) => (
               <div
@@ -229,7 +259,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Partners Section with dynamic logo */}
+      {/* Partners Section with updated logo */}
       <section className="relative z-10 bg-white/5 backdrop-blur-lg py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Our Partners</h2>
@@ -241,7 +271,7 @@ const Index = () => {
               className="hover:opacity-80 transition-opacity duration-300"
             >
               <img
-                src="https://exillar.com/assets/images/header/logo.png"
+                src="https://aavatto.com/wp-content/uploads/2024/04/Feature-Image-Shree-Swaminarayan-Donations-1.png"
                 alt="Exillar"
                 className="h-12 object-contain"
               />
@@ -250,16 +280,16 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Newsletter Section */}
+      {/* Newsletter Section with increased width */}
       <section className="relative z-10 py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8">Stay Updated</h2>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="bg-white/10 border border-white/20 rounded-lg px-6 py-3 focus:outline-none focus:border-accent w-full md:w-auto"
+                className="bg-white/10 border border-white/20 rounded-lg px-6 py-3 focus:outline-none focus:border-accent w-full md:w-96"
               />
               <button className="bg-accent hover:bg-accent/80 text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 whitespace-nowrap">
                 <Mail className="w-5 h-5 inline-block mr-2" />
