@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TypeWriter from "../components/TypeWriter";
@@ -56,15 +57,14 @@ const Index = () => {
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/30 backdrop-blur-lg border-b border-white/10">
-        <div className="container mx-auto px-6 py-6">
+        <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-2">
               <img
-                src="https://media.licdn.com/dms/image/v2/D4D0BAQEe47C2UFIioQ/company-logo_200_200/B4DZT0NaiBGkAI-/0/1739263945368/data_n_dash_logo?e=1747267200&v=beta&t=7VYIClGJTsxxRJa7mdouNbqo6BCdoygW9a2UcWUhW48"
+                src="https://iili.io/2mHIhYl.png"
                 alt="Data n Dash"
-                className="w-13 h-12 object-contain"
+                className="w-auto h-16 object-contain transition-transform hover:scale-105"
               />
-              <span className="text-xl font-bold">Data n Dash</span>
             </Link>
             <div className="hidden md:flex space-x-8">
               <button
