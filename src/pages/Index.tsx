@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TypeWriter from "../components/TypeWriter";
-import LoadingScreen from "../components/LoadingScreen";
 import { CalendarDays, Mail, Users, Github, Linkedin, ExternalLink, MapPin, X } from "lucide-react";
 
 const Index = () => {
