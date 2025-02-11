@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TypeWriter from "../components/TypeWriter";
-import { CalendarDays, Mail, Users, Github, Linkedin, ExternalLink } from "lucide-react";
+import LoadingScreen from "../components/LoadingScreen";
+import { CalendarDays, Mail, Users, Github, Linkedin, ExternalLink, MapPin } from "lucide-react";
 
 const Index = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -11,8 +24,22 @@ const Index = () => {
     }
   };
 
+  if (isLoading) {
+    return <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />;
+  }
+
   return (
     <div className="min-h-screen bg-primary text-white relative overflow-hidden">
+      {/* Mouse follower */}
+      <div
+        className="fixed w-8 h-8 rounded-full border border-accent/30 pointer-events-none transition-all duration-100 ease-out z-50"
+        style={{
+          left: mousePosition.x - 16,
+          top: mousePosition.y - 16,
+          transform: `translate(${(mousePosition.x * 0.1)}px, ${(mousePosition.y * 0.1)}px)`,
+        }}
+      />
+
       {/* Grid Background */}
       <div
         className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)]"
@@ -23,9 +50,16 @@ const Index = () => {
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/30 backdrop-blur-lg border-b border-white/10">
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="text-xl font-bold">Data n Dash</div>
+            <div className="flex items-center space-x-2">
+              <img
+                src="https://media.licdn.com/dms/image/v2/D4D0BAQFSxdzdS2j4Gw/company-logo_100_100/B4DZTzlriQHYAQ-/0/1739253529200/data_n_dash_logo?e=1747267200&v=beta&t=WWOtrHesO5xpFNAVyFwRS5DbqlHHH9vi0nYN0-1_zKQ"
+                alt="Data n Dash"
+                className="w-8 h-8 object-contain"
+              />
+              <span className="text-xl font-bold">Data n Dash</span>
+            </div>
             <div className="hidden md:flex space-x-8">
               <button
                 onClick={() => scrollToSection("objectives")}
@@ -46,15 +80,21 @@ const Index = () => {
                 Team
               </button>
             </div>
+            {/* Mobile menu button */}
+            <button className="md:hidden p-2">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative z-10 container mx-auto px-6 pt-32 pb-16">
+      <section className="relative z-10 container mx-auto px-4 pt-32 pb-16">
         <TypeWriter />
         <p className="mt-8 text-center max-w-2xl mx-auto text-lg text-gray-300">
-          Join our community of data professionals and enthusiasts. We organize
+          Join our community of data professionals and enthusiasts in Ahmedabad. We organize
           meetups and events focused on data analysis, engineering, and more.
         </p>
         <div className="mt-12 flex justify-center">
@@ -71,7 +111,7 @@ const Index = () => {
 
       {/* Objectives Section */}
       <section id="objectives" className="relative z-10 bg-white/5 backdrop-blur-lg py-20 scroll-mt-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Our Focus Areas</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
@@ -107,7 +147,7 @@ const Index = () => {
 
       {/* Current Events */}
       <section id="events" className="relative z-10 py-20 scroll-mt-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Current Events</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3].map((index) => (
@@ -130,7 +170,7 @@ const Index = () => {
 
       {/* Past Events */}
       <section className="relative z-10 bg-white/5 backdrop-blur-lg py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Past Events</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
@@ -153,21 +193,21 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* Team Section with updated images */}
       <section id="team" className="relative z-10 py-20 scroll-mt-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Our Team</h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
             {[
               {
                 name: "Pranav Nair",
                 role: "Founder",
-                image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952",
+                image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7",
               },
               {
                 name: "Umair Mansuri",
                 role: "Co-Founder",
-                image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
               },
             ].map((member) => (
               <div
@@ -189,9 +229,9 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Partners Section */}
+      {/* Partners Section with dynamic logo */}
       <section className="relative z-10 bg-white/5 backdrop-blur-lg py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Our Partners</h2>
           <div className="flex justify-center">
             <a
@@ -210,16 +250,16 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Newsletter */}
+      {/* Newsletter Section */}
       <section className="relative z-10 py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8">Stay Updated</h2>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="bg-white/10 border border-white/20 rounded-lg px-6 py-3 focus:outline-none focus:border-accent"
+                className="bg-white/10 border border-white/20 rounded-lg px-6 py-3 focus:outline-none focus:border-accent w-full md:w-auto"
               />
               <button className="bg-accent hover:bg-accent/80 text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 whitespace-nowrap">
                 <Mail className="w-5 h-5 inline-block mr-2" />
@@ -232,14 +272,21 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="relative z-10 bg-primary/90 border-t border-white/10">
-        <div className="container mx-auto px-6 py-12">
+        <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {/* About Column */}
             <div className="space-y-4">
-              <h3 className="text-xl font-bold">Data n Dash</h3>
+              <div className="flex items-center space-x-2">
+                <img
+                  src="https://media.licdn.com/dms/image/v2/D4D0BAQFSxdzdS2j4Gw/company-logo_100_100/B4DZTzlriQHYAQ-/0/1739253529200/data_n_dash_logo?e=1747267200&v=beta&t=WWOtrHesO5xpFNAVyFwRS5DbqlHHH9vi0nYN0-1_zKQ"
+                  alt="Data n Dash"
+                  className="w-8 h-8 object-contain"
+                />
+                <h3 className="text-xl font-bold">Data n Dash</h3>
+              </div>
               <p className="text-gray-300">
                 Empowering data professionals through community, learning, and
-                innovation.
+                innovation in Ahmedabad.
               </p>
               <div className="flex space-x-4">
                 <a
@@ -258,6 +305,10 @@ const Index = () => {
                 >
                   <Github className="w-6 h-6" />
                 </a>
+              </div>
+              <div className="flex items-center space-x-2 text-gray-300">
+                <MapPin className="w-5 h-5" />
+                <span>Ahmedabad, Gujarat</span>
               </div>
             </div>
 
