@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TypeWriter from "../components/TypeWriter";
 import { CalendarDays, Mail, Users, Github, Linkedin, ExternalLink, MapPin, X } from "lucide-react";
+import { fetchEvents } from "../utils/sheets";
 
 const Index = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [currentEvents, setCurrentEvents] = useState<any[]>([]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -14,6 +16,14 @@ const Index = () => {
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    const loadEvents = async () => {
+      const events = await fetchEvents();
+      setCurrentEvents(events);
+    };
+    loadEvents();
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -179,18 +189,22 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Current Events</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3].map((index) => (
+            {currentEvents.map((event, index) => (
               <div
                 key={index}
                 className="bg-primary/50 backdrop-blur-lg p-6 rounded-lg border border-white/10 hover:border-accent transition-all duration-300 group"
               >
                 <CalendarDays className="w-8 h-8 text-accent mb-4" />
-                <h3 className="text-xl font-semibold mb-2">
-                  Data Engineering Meetup #{index}
-                </h3>
-                <p className="text-gray-300">
-                  Join us for an evening of learning and networking.
-                </p>
+                <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
+                <p className="text-gray-300 mb-4">{event.description}</p>
+                <div className="flex items-center text-gray-300 mb-2">
+                  <MapPin className="w-4 h-4 mr-2" />
+                  <span>{event.venue}</span>
+                </div>
+                <div className="text-gray-300">
+                  <CalendarDays className="w-4 h-4 inline-block mr-2" />
+                  <span>{event.date}</span>
+                </div>
               </div>
             ))}
           </div>
