@@ -60,7 +60,7 @@ const Index = () => {
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-2">
               <img
-                src="https://i.ibb.co/RkkXLHkV/DND-150x150.png"
+                src="https://i.ibb.co/3m7SW7kD/DND-Logo-Variations-1-03.png"
                 alt="Data n Dash"
                 
                 className="w-16 h-12 object-contain"
