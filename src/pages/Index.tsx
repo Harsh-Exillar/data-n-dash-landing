@@ -46,13 +46,13 @@ const Index = () => {
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/30 backdrop-blur-lg border-b border-white/10">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-2">
               <img
-                src="https://media.licdn.com/dms/image/v2/D4D0BAQFSxdzdS2j4Gw/company-logo_100_100/B4DZTzlriQHYAQ-/0/1739253529200/data_n_dash_logo?e=1747267200&v=beta&t=WWOtrHesO5xpFNAVyFwRS5DbqlHHH9vi0nYN0-1_zKQ"
+                src="https://media.licdn.com/dms/image/v2/D4D0BAQEe47C2UFIioQ/company-logo_200_200/B4DZT0NaiBGkAI-/0/1739263945368/data_n_dash_logo?e=1747267200&v=beta&t=7VYIClGJTsxxRJa7mdouNbqo6BCdoygW9a2UcWUhW48"
                 alt="Data n Dash"
-                className="w-8 h-8 object-contain"
+                className="w-13 h-12 object-contain"
               />
               <span className="text-xl font-bold">Data n Dash</span>
             </Link>
@@ -236,7 +236,7 @@ const Index = () => {
               {
                 name: "Janvi Gupta",
                 role: " Organizer",
-                image: "https://media.licdn.com/dms/image/v2/D5603AQEmug7AJ1lItw/profile-displayphoto-shrink_200_200/B56ZSDSBd2H0Ac-/0/1737369327997?e=2147483647&v=beta&t=eIaLPpNlVse277jjWUghzNf9vxduxbZR5znaPPfNEX0",
+                image: "https://media.licdn.com/dms/image/v2/D4D03AQGrIXlkxIOXaQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1711783329581?e=1744848000&v=beta&t=PlcnVlhWQyxgD-r6USEh2r2ls1d5lgrtO5FmUvqtqaY",
               },
               {
                 name: "Harsh Mer",
@@ -382,7 +382,7 @@ const Index = () => {
               <h3 className="text-xl font-bold">Contact</h3>
               <div className="flex items-center space-x-2 text-gray-300">
                 <Mail className="w-5 h-5" />
-                <span>info@datandash.com</span>
+                <span>dndcommunity@gmail.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <a
