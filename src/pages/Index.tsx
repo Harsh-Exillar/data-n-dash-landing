@@ -139,7 +139,7 @@ const Index = () => {
         </p>
         <div className="mt-12 flex justify-center">
           <a
-            href="https://forms.gle/tjvtH1dNVzJNyK1S7"
+            href="https://chat.whatsapp.com/JLPCle8v1oe5RHgzDZHMS5"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-accent hover:bg-accent/80 text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
