@@ -329,7 +329,7 @@ const Index = () => {
         <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {/* About Column */}
-            <div className="space-y-4">
+            <div className="space-y-4 font-montserrat">
               <div className="flex items-center space-x-2">
                 <img
                   src="https://i.ibb.co/9ksS9kT7/DND-logo-150x150.png"
@@ -375,7 +375,7 @@ const Index = () => {
             </div>
 
             {/* Quick Links */}
-            <div className="space-y-4">
+            <div className="space-y-4 font-montserrat">
               <h3 className="text-xl font-bold">Quick Links</h3>
               <ul className="space-y-2">
                 <li>
@@ -406,7 +406,7 @@ const Index = () => {
             </div>
 
             {/* Contact */}
-            <div className="space-y-4">
+            <div className="space-y-4 font-montserrat">
               <h3 className="text-xl font-bold">Contact</h3>
               <div className="flex items-center space-x-2 text-gray-300">
                 <Mail className="w-5 h-5" />
@@ -426,7 +426,7 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="mt-12 pt-8 border-t border-white/10 text-center text-gray-400">
+          <div className="mt-12 pt-8 border-t border-white/10 text-center text-gray-400 font-montserrat">
             <p>© {new Date().getFullYear()} Data n Dash. All rights reserved.</p>
           </div>
         </div>
