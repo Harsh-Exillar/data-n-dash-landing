@@ -190,7 +190,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Current Events */}
+      {/* Current Events - Temporarily commented out
       <section id="events" className="relative z-10 py-20 scroll-mt-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Current Events</h2>
@@ -216,6 +216,7 @@ const Index = () => {
           </div>
         </div>
       </section>
+      */}
 
       {/* Past Events */}
       <section className="relative z-10 bg-white/5 backdrop-blur-lg py-20">
