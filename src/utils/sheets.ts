@@ -1,9 +1,9 @@
 
 const SPREADSHEET_ID = '1BJlr4mYeg0IrDnwJsI7V5Y3MtyYcCkmaSFlguFfU5Q4';
-const SHEET_ID = 'Sheet1'; // Assuming first sheet
+const SHEET_RANGE = 'Sheet1!A1:D'; // Updated format to specify columns A through D
 
 // You'll need to replace this with your valid API key
-const API_KEY = 'AIzaSyBg7S1b8me1-8PjOVhc0v34bdAp0EK6jhE'; // Remove invalid key for now
+const API_KEY = 'AIzaSyBg7S1b8me1-8PjOVhc0v34bdAp0EK6jhE';
 
 interface Event {
   title: string;
@@ -39,11 +39,13 @@ export const fetchEvents = async (): Promise<Event[]> => {
 
   try {
     const response = await fetch(
-      `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_ID}?key=${API_KEY}`
+      `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_RANGE}?key=${API_KEY}`
     );
     
     if (!response.ok) {
-      throw new Error('Failed to fetch events');
+      const errorData = await response.json();
+      console.error('API Error:', errorData);
+      throw new Error(`Failed to fetch events: ${errorData?.error?.message || 'Unknown error'}`);
     }
 
     const data = await response.json();
