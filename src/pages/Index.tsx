@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TypeWriter from "../components/TypeWriter";
-import { CalendarDays, Mail, Users, Github, Linkedin, ExternalLink, MapPin, X } from "lucide-react";
+import { CalendarDays, Mail, Users, Instagram, Linkedin, Twitter, ExternalLink, MapPin, X } from "lucide-react";
 import { fetchEvents } from "../utils/sheets";
 
 const Index = () => {
@@ -153,8 +153,13 @@ const Index = () => {
       <section id="objectives" className="relative z-10 bg-white/5 backdrop-blur-lg py-20 scroll-mt-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Our Focus Areas</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
+              {
+                title: "Data Analytics",
+                description:
+                  "Deep dive into Dashboards and DAX Queries",
+              },
               {
                 title: "Data Engineering Excellence",
                 description:
@@ -327,7 +332,7 @@ const Index = () => {
             <div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <img
-                  src="https://media.licdn.com/dms/image/v2/D4D0BAQFSxdzdS2j4Gw/company-logo_100_100/B4DZTzlriQHYAQ-/0/1739253529200/data_n_dash_logo?e=1747267200&v=beta&t=WWOtrHesO5xpFNAVyFwRS5DbqlHHH9vi0nYN0-1_zKQ"
+                  src="https://i.ibb.co/9ksS9kT7/DND-logo-150x150.png"
                   alt="Data n Dash"
                   className="w-8 h-8 object-contain"
                 />
@@ -347,12 +352,20 @@ const Index = () => {
                   <Linkedin className="w-6 h-6" />
                 </a>
                 <a
-                  href="https://github.com"
+                  href="https://www.instagram.com/datandash"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-300 hover:text-accent transition-colors"
                 >
-                  <Github className="w-6 h-6" />
+                  <Instagram className="w-6 h-6" />
+                </a>
+                <a
+                  href="https://x.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-accent transition-colors"
+                >
+                  <Twitter className="w-6 h-6" />
                 </a>
               </div>
               <div className="flex items-center space-x-2 text-gray-300">
