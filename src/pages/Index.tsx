@@ -56,11 +56,11 @@ const Index = () => {
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/30 backdrop-blur-lg border-b border-white/10">
-        <div className="container mx-auto px- py-">
+        <div className="container mx-auto px-5 py-5">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-2">
               <img
-                src="https://i.ibb.co/yFCVRDQR/DND-Logo-Variations-1-03.png"
+                src="https://i.ibb.co/9ksS9kT7/DND-logo-150x150.png"
                 alt="Data n Dash"
                 
                 className="w-16 h-12 object-contain"
